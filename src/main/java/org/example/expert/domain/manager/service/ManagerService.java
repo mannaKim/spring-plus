@@ -47,6 +47,10 @@ public class ManagerService {
             throw new InvalidRequestException("일정 작성자는 본인을 담당자로 등록할 수 없습니다.");
         }
 
+        if (managerRepository.existsByTodoAndUser(todo, managerUser)) {
+            throw new InvalidRequestException("해당 사용자는 이미 일정의 담당자로 등록되어 있습니다.");
+        }
+
         Manager newManagerUser = new Manager(managerUser, todo);
         Manager savedManagerUser = managerRepository.save(newManagerUser);
 
