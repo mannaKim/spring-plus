@@ -64,11 +64,11 @@ public class TodoRepositoryCustomImpl implements TodoRepositoryCustom {
 
         return PageableExecutionUtils.getPage(result, pageable, () ->
                 Optional.ofNullable(queryFactory
-                        .select(todo.id.count())
-                        .from(todo)
-                        .where(builder)
-                        .fetchOne())
-                .orElse(0L)
+                                .select(todo.id.count())
+                                .from(todo)
+                                .where(builder)
+                                .fetchOne())
+                        .orElse(0L)
         );
     }
 
