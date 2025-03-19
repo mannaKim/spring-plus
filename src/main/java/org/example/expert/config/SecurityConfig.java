@@ -35,7 +35,9 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // 세션을 사용하지 않도록 설정
                 .addFilterBefore(jwtAuthenticationFilter, SecurityContextHolderAwareRequestFilter.class)
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/auth/**").permitAll();   // 인증 없이 접근 가능
+                    auth.requestMatchers("/auth/**").permitAll();   // 회원가입/로그인은 인증 없이 접근 가능
+                    auth.requestMatchers("/health").permitAll();            // health check API는 인증 없이 접근 가능
+                    //auth.requestMatchers("/actuator/health").permitAll();   // health check API는 인증 없이 접근 가능
                     auth.requestMatchers("/admin").hasAuthority(UserRole.Authority.ADMIN);  // 관리자 권한 필요
                     if (isDevProfile()) {
                         auth.requestMatchers("/h2-console/**").permitAll(); // 개발 환경에서 H2 콘솔 접근 허용
