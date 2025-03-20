@@ -51,6 +51,11 @@ dependencies {
     // spring-security
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
+    // S3 & AWS Parameter Store
+    implementation platform("io.awspring.cloud:spring-cloud-aws-dependencies:3.2.0")
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3'
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-parameter-store'
+
     // actuator (Health Check)
     //implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
